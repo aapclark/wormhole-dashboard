@@ -14,8 +14,6 @@ export const explorerBlock = (network: Network, chainId: ChainId, block: string)
       ? `https://solana.fm/block/${block}`
       : chainId === chainToChainId('Ethereum')
       ? `https://etherscan.io/block/${block}`
-      : chainId === chainToChainId('Terra')
-      ? `https://finder.terra.money/columbus-5/block/${block}`
       : chainId === chainToChainId('Bsc')
       ? `https://bscscan.com/block/${block}`
       : chainId === chainToChainId('Polygon')
@@ -26,10 +24,6 @@ export const explorerBlock = (network: Network, chainId: ChainId, block: string)
       ? `https://app.dappflow.org/explorer/block/${block}`
       : chainId === chainToChainId('Fantom')
       ? `https://ftmscan.com/block/${block}`
-      : chainId === chainToChainId('Karura')
-      ? `https://blockscout.karura.network/block/${block}`
-      : chainId === chainToChainId('Acala')
-      ? `https://blockscout.acala.network/block/${block}`
       : chainId === chainToChainId('Klaytn')
       ? `https://scope.klaytn.com/block/${block}`
       : chainId === chainToChainId('Celo')
@@ -78,6 +72,8 @@ export const explorerBlock = (network: Network, chainId: ChainId, block: string)
       ? `https://explorer.inkonchain.com/block/${block}`
       : chainId === chainToChainId('HyperEVM')
       ? `https://www.hyperscan.com/block/${block}`
+      : chainId === chainToChainId('Plume')
+      ? `https://explorer.plume.org/block/${block}`
       : ''
     : chainId === chainToChainId('Solana')
     ? `https://explorer.solana.com/${block}?cluster=testnet`
@@ -95,9 +91,7 @@ export const explorerBlock = (network: Network, chainId: ChainId, block: string)
     : chainId === chainToChainId('Fantom')
     ? `https://testnet.ftmscan.com/block/${block}`
     : // : chainId === chainToChainId('Karura') <-- not supported on testnet dashboard
-    chainId === chainToChainId('Acala')
-    ? `https://blockscout.mandala.aca-staging.network/block/${block}`
-    : chainId === chainToChainId('Klaytn')
+    chainId === chainToChainId('Klaytn')
     ? `https://baobab.klaytnscope.com/block/${block}`
     : chainId === chainToChainId('Celo')
     ? `https://alfajores.celoscan.io/block/${block}`
@@ -148,6 +142,8 @@ export const explorerBlock = (network: Network, chainId: ChainId, block: string)
     ? `https://rpc.test.mezo.org/block/${block}`
     : chainId === chainToChainId('Converge')
     ? `https://explorer-converge-testnet-1.t.conduit.xyz/block/${block}`
+    : chainId === chainToChainId('Plume')
+    ? `https://testnet-explorer.plume.org/block/${block}`
     : // : chainId === chainToChainId('Wormscan') <-- not supported on testnet dashboard
       '';
 
@@ -157,8 +153,6 @@ export const explorerTx = (network: Network, chainId: ChainId, tx: string) =>
       ? `https://solana.fm/tx/${tx}`
       : chainId === chainToChainId('Ethereum')
       ? `https://etherscan.io/tx/${tx}`
-      : chainId === chainToChainId('Terra')
-      ? `https://finder.terra.money/columbus-5/tx/${tx}`
       : chainId === chainToChainId('Bsc')
       ? `https://bscscan.com/tx/${tx}`
       : chainId === chainToChainId('Polygon')
@@ -169,10 +163,6 @@ export const explorerTx = (network: Network, chainId: ChainId, tx: string) =>
       ? `https://app.dappflow.org/explorer/transaction/${tx}`
       : chainId === chainToChainId('Fantom')
       ? `https://ftmscan.com/tx/${tx}`
-      : chainId === chainToChainId('Karura')
-      ? `https://blockscout.karura.network/tx/${tx}`
-      : chainId === chainToChainId('Acala')
-      ? `https://blockscout.acala.network/tx/${tx}`
       : chainId === chainToChainId('Klaytn')
       ? `https://scope.klaytn.com/tx/${tx}`
       : chainId === chainToChainId('Celo')
@@ -221,6 +211,8 @@ export const explorerTx = (network: Network, chainId: ChainId, tx: string) =>
       ? `https://explorer.inkonchain.com/tx/${tx}`
       : chainId === chainToChainId('HyperEVM')
       ? `https://www.hyperscan.com/tx/${tx}`
+      : chainId === chainToChainId('Plume')
+      ? `https://explorer.plume.org/tx/${tx}`
       : ''
     : chainId === chainToChainId('Solana')
     ? `https://solscan.io/txs/${tx}?cluster=testnet`
@@ -238,9 +230,7 @@ export const explorerTx = (network: Network, chainId: ChainId, tx: string) =>
     : chainId === chainToChainId('Fantom')
     ? `https://testnet.ftmscan.com/tx/${tx}`
     : // chainId === chainToChainId('Karura') <-- not supported on testnet dashboard
-    chainId === chainToChainId('Acala')
-    ? `https://blockscout.mandala.aca-staging.network/tx/${tx}`
-    : chainId === chainToChainId('Klaytn')
+    chainId === chainToChainId('Klaytn')
     ? `https://baobab.klaytnscope.com/tx/${tx}`
     : chainId === chainToChainId('Celo')
     ? `https://alfajores.celoscan.io/tx/${tx}`
@@ -291,6 +281,8 @@ export const explorerTx = (network: Network, chainId: ChainId, tx: string) =>
     ? `https://rpc.test.mezo.org/tx/${tx}`
     : chainId === chainToChainId('Converge')
     ? `https://explorer-converge-testnet-1.t.conduit.xyz/tx/${tx}`
+    : chainId === chainToChainId('Plume')
+    ? `https://testnet-explorer.plume.org/tx/${tx}`
     : // chainId === chainToChainId('Wormscan') <-- not supported on testnet dashboard
       '';
 
