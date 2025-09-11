@@ -1,6 +1,6 @@
 import { expect, jest, test } from '@jest/globals';
 import { INITIAL_DEPLOYMENT_BLOCK_BY_NETWORK_AND_CHAIN } from '@wormhole-foundation/wormhole-monitor-common/dist/consts';
-import { SolanaWatcher } from '../SolanaWatcher';
+import { SVMWatcher } from '../SVMWatcher';
 
 jest.setTimeout(60000);
 
@@ -9,13 +9,13 @@ const INITIAL_SOLANA_BLOCK = Number(
 );
 
 test('getFinalizedBlockNumber', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const blockNumber = await watcher.getFinalizedBlockNumber();
   expect(blockNumber).toBeGreaterThan(INITIAL_SOLANA_BLOCK);
 });
 
 test('getMessagesForBlocks - single block', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(170799004, 170799004);
   expect(Object.keys(messages).length).toBe(1);
   expect(messages).toMatchObject({
@@ -31,21 +31,21 @@ test('getMessagesForBlocks - single block', async () => {
 
 // temporary skip due to SolanaJSONRPCError: failed to get confirmed block: Block 171774030 cleaned up, does not exist on node. First available block: 176896202
 test('getMessagesForBlocks - fromSlot is skipped slot', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(171774030, 171774032); // 171774024 - 171774031 are skipped
   expect(Object.keys(messages).length).toBe(1);
   expect(messages).toMatchObject({ '171774032/2023-01-10T13:36:39.000Z': [] });
 });
 
 test('getMessagesForBlocks - toSlot is skipped slot', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(171774023, 171774025);
   expect(messages).toMatchObject({ '171774025/2023-01-10T13:36:34.000Z': [] });
 });
 
 test('getMessagesForBlocks - empty block', async () => {
   // Even if there are no messages, last block should still be returned
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(170979766, 170979766);
   expect(Object.keys(messages).length).toBe(1);
   expect(messages).toMatchObject({ '170979766/2023-01-05T18:40:25.000Z': [] });
@@ -53,7 +53,7 @@ test('getMessagesForBlocks - empty block', async () => {
 
 // temporary skip due to SolanaJSONRPCError: failed to get confirmed block: Block 174108865 cleaned up, does not exist on node. First available block: 176892532
 test('getMessagesForBlocks - block with no transactions', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   expect(watcher.getMessagesForBlocks(174108861, 174108861)).rejects.toThrowError(
     'solana: invalid block range'
   );
@@ -68,21 +68,21 @@ test('getMessagesForBlocks - block with no transactions', async () => {
 });
 
 test('getMessagesForBlocks - multiple blocks', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(171050470, 171050474);
   expect(Object.keys(messages).length).toBe(2);
   expect(Object.values(messages).flat().length).toBe(2);
 });
 
 test('getMessagesForBlocks - multiple blocks, last block empty', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(170823000, 170825000);
   expect(Object.keys(messages).length).toBe(3);
   expect(Object.values(messages).flat().length).toBe(2); // 2 messages, last block has no message
 });
 
 test('getMessagesForBlocks - multiple blocks containing more than `getSignaturesLimit` WH transactions', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   watcher.getSignaturesLimit = 10;
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(171582367, 171583452);
   expect(Object.keys(messages).length).toBe(3);
@@ -90,7 +90,7 @@ test('getMessagesForBlocks - multiple blocks containing more than `getSignatures
 });
 
 test('getMessagesForBlocks - multiple calls', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const { vaasByBlock: messages1 } = await watcher.getMessagesForBlocks(171773021, 171773211);
   const { vaasByBlock: messages2 } = await watcher.getMessagesForBlocks(171773212, 171773250);
   const { vaasByBlock: messages3 } = await watcher.getMessagesForBlocks(171773251, 171773500);
@@ -104,7 +104,7 @@ test('getMessagesForBlocks - multiple calls', async () => {
 });
 
 test('getMessagesForBlocks - handle failed transactions', async () => {
-  const watcher = new SolanaWatcher('Mainnet');
+  const watcher = new SVMWatcher('Mainnet', 'Solana');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(94401321, 94501321);
   expect(Object.keys(messages).length).toBe(6);
   expect(Object.values(messages).flat().length).toBe(5);
@@ -117,7 +117,7 @@ test('getMessagesForBlocks - handle failed transactions', async () => {
 });
 
 test.only('getMessagesForBlocks - shim 1', async () => {
-  const watcher = new SolanaWatcher('Testnet', 'vaa', 'https://explorer-api.devnet.solana.com');
+  const watcher = new SVMWatcher('Testnet', 'Solana', 'vaa', 'https://explorer-api.devnet.solana.com');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(356345331, 356345332);
   expect(Object.keys(messages).length).toBe(1);
   expect(Object.values(messages).length).toBe(1);
@@ -129,7 +129,7 @@ test.only('getMessagesForBlocks - shim 1', async () => {
 });
 
 test.only('getMessagesForBlocks - shim 2', async () => {
-  const watcher = new SolanaWatcher('Testnet', 'vaa', 'https://explorer-api.devnet.solana.com');
+  const watcher = new SVMWatcher('Testnet', 'Solana', 'vaa', 'https://explorer-api.devnet.solana.com');
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(357272507, 357272508);
   expect(Object.keys(messages).length).toBe(1);
   expect(Object.values(messages).length).toBe(1);

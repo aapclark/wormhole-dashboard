@@ -89,6 +89,7 @@ const supportedChains: Chain[] =
         'Mezo',
         'Plume',
         'XRPLEVM',
+        'Fogo',
       ];
 
 const supportedNTTChains: Chain[] =

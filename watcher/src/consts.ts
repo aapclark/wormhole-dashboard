@@ -46,6 +46,7 @@ export const RPCS_BY_CHAIN: { [key in Network]: { [key in Chain]?: string } } = 
     Optimism: process.env.OPTIMISM_RPC || 'https://optimism-rpc.publicnode.com',
     Aptos: process.env.APTOS_RPC || 'https://fullnode.mainnet.aptoslabs.com/',
     Near: process.env.NEAR_RPC || 'https://rpc.mainnet.near.org',
+    Terra2: process.env.TERRA2_RPC || 'https://phoenix-fcd.terra.dev',
     Injective: process.env.INJECTIVE_RPC || 'https://sentry.exchange.grpc-web.injective.network',
     Solana: process.env.SOLANA_RPC || 'https://api.mainnet-beta.solana.com',
     Sui: process.env.SUI_RPC || 'https://rpc.mainnet.sui.io',
@@ -63,6 +64,7 @@ export const RPCS_BY_CHAIN: { [key in Network]: { [key in Chain]?: string } } = 
     Mezo: process.env.MEZO_RPC || 'https://jsonrpc-mezo.boar.network',
     Plume: process.env.PLUME_EVM_RPC || 'https://rpc.plume.org',
     XRPLEVM: process.env.XRPL_EVM_RPC || 'https://rpc.xrplevm.org',
+    // TODO after mainnet launch Fogo: process.env.FOGO_RPC || '',
   },
   ['Testnet']: {
     Ethereum: process.env.ETH_RPC,
@@ -78,6 +80,7 @@ export const RPCS_BY_CHAIN: { [key in Network]: { [key in Chain]?: string } } = 
     Optimism: process.env.OPTIMISM_RPC,
     Aptos: process.env.APTOS_RPC,
     Near: process.env.NEAR_RPC,
+    Terra2: process.env.TERRA2_RPC || 'https://pisco-lcd.terra.dev',
     Injective: process.env.INJECTIVE_RPC,
     Solana: process.env.SOLANA_RPC,
     Sui: process.env.SUI_RPC,
@@ -105,6 +108,7 @@ export const RPCS_BY_CHAIN: { [key in Network]: { [key in Chain]?: string } } = 
     Converge: process.env.CONVERGE_RPC || 'https://rpc-converge-testnet-1.t.conduit.xyz',
     Plume: process.env.PLUME_EVM_RPC || 'https://testnet-rpc.plume.org',
     XRPLEVM: process.env.XRPL_EVM_RPC || 'https://rpc.testnet.xrplevm.org',
+    Fogo: process.env.FOGO_RPC || 'https://testnet.fogo.io',
   },
   ['Devnet']: {},
 };

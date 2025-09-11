@@ -85,6 +85,7 @@ export const INITIAL_DEPLOYMENT_BLOCK_BY_NETWORK_AND_CHAIN: NetworkChainBlockMap
     Converge: '7564', // Block of contract creation
     Plume: '14026067', // Block of contract creation
     XRPLEVM: '2545210', // Block of contract creation, https://explorer.testnet.xrplevm.org/tx/0x9d083173bc92c4e3ba97369bd81734eedf99044ca9577e7ab4edefa177b12492
+    Fogo: '9840330', // Block of contract creation
   },
   ['Devnet']: {},
 };
@@ -158,6 +159,7 @@ export function getMissThreshold(date: Date, chainish: number | string | Chain |
 export const TOKEN_BRIDGE_EMITTERS: { [key in Chain]?: string } = {
   Solana: 'ec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5',
   Ethereum: '0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585',
+  Terra2: 'a463ad028fb79679cfc8ce1efba35ac0e77b35080a1abe9bebe83461f176b0a3',
   Bsc: '000000000000000000000000b6f6d86a8f9879a9c87f643768d9efc38c1da6e7',
   Polygon: '0000000000000000000000005a58505a96d1dbf8df91cb21b54419fc36e93fde',
   Avalanche: '0000000000000000000000000e082f06ff657d94310cb8ce8b0d9a04541d8052',

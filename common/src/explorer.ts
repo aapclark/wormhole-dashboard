@@ -72,6 +72,8 @@ export const explorerBlock = (network: Network, chainId: ChainId, block: string)
       ? `https://explorer.plume.org/block/${block}`
       : chainId === chainToChainId('XRPLEVM')
       ? `https://explorer.xrplevm.org/block/${block}`
+      /* TODO: add when mainnent launches : chainId === chainToChainId('Fogo')
+      ? `https://explorer.fogo.io/bloc/${block}?cluster=mainnet` */
       : ''
     : chainId === chainToChainId('Solana')
     ? `https://explorer.solana.com/${block}?cluster=testnet`
@@ -137,6 +139,8 @@ export const explorerBlock = (network: Network, chainId: ChainId, block: string)
     ? `https://testnet-explorer.plume.org/block/${block}`
     : chainId === chainToChainId('XRPLEVM')
     ? `https://explorer.testnet.xrplevm.org/block/${block}`
+    : chainId === chainToChainId('Fogo')
+    ? `https://explorer.fogo.io/bloc/${block}?cluster=testnet`
     : // : chainId === chainToChainId('Wormscan') <-- not supported on testnet dashboard
       '';
 
@@ -204,6 +208,8 @@ export const explorerTx = (network: Network, chainId: ChainId, tx: string) =>
       ? `https://explorer.plume.org/tx/${tx}`
       : chainId === chainToChainId('XRPLEVM')
       ? `https://explorer.xrplevm.org/tx/${tx}`
+      /* todo: add when mainnet launches : chainId === chainToChainId('Fogo')
+      ? `https://explorer.fogo.io/tx/${tx}?cluster=mainnet` */
       : ''
     : chainId === chainToChainId('Solana')
     ? `https://solscan.io/txs/${tx}?cluster=testnet`
@@ -270,6 +276,8 @@ export const explorerTx = (network: Network, chainId: ChainId, tx: string) =>
     ? `https://testnet-explorer.plume.org/tx/${tx}`
     : chainId === chainToChainId('XRPLEVM')
     ? `https://explorer.testnet.xrplevm.org/tx/${tx}`
+    : chainId === chainToChainId('Fogo')
+    ? `https://explorer.fogo.io/tx/${tx}?cluster=testnet`
     : // chainId === chainToChainId('Wormscan') <-- not supported on testnet dashboard
       '';
 
