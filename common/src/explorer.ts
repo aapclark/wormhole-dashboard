@@ -72,9 +72,9 @@ export const explorerBlock = (network: Network, chainId: ChainId, block: string)
       ? `https://explorer.plume.org/block/${block}`
       : chainId === chainToChainId('XRPLEVM')
       ? `https://explorer.xrplevm.org/block/${block}`
-      /* TODO: add when mainnent launches : chainId === chainToChainId('Fogo')
+      : /* TODO: add when mainnent launches : chainId === chainToChainId('Fogo')
       ? `https://explorer.fogo.io/bloc/${block}?cluster=mainnet` */
-      : ''
+        ''
     : chainId === chainToChainId('Solana')
     ? `https://explorer.solana.com/${block}?cluster=testnet`
     : chainId === chainToChainId('Ethereum')
@@ -208,9 +208,9 @@ export const explorerTx = (network: Network, chainId: ChainId, tx: string) =>
       ? `https://explorer.plume.org/tx/${tx}`
       : chainId === chainToChainId('XRPLEVM')
       ? `https://explorer.xrplevm.org/tx/${tx}`
-      /* todo: add when mainnet launches : chainId === chainToChainId('Fogo')
+      : /* todo: add when mainnet launches : chainId === chainToChainId('Fogo')
       ? `https://explorer.fogo.io/tx/${tx}?cluster=mainnet` */
-      : ''
+        ''
     : chainId === chainToChainId('Solana')
     ? `https://solscan.io/txs/${tx}?cluster=testnet`
     : chainId === chainToChainId('Ethereum')

@@ -117,7 +117,12 @@ test('getMessagesForBlocks - handle failed transactions', async () => {
 });
 
 test.only('getMessagesForBlocks - shim 1', async () => {
-  const watcher = new SVMWatcher('Testnet', 'Solana', 'vaa', 'https://explorer-api.devnet.solana.com');
+  const watcher = new SVMWatcher(
+    'Testnet',
+    'Solana',
+    'vaa',
+    'https://explorer-api.devnet.solana.com'
+  );
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(356345331, 356345332);
   expect(Object.keys(messages).length).toBe(1);
   expect(Object.values(messages).length).toBe(1);
@@ -129,7 +134,12 @@ test.only('getMessagesForBlocks - shim 1', async () => {
 });
 
 test.only('getMessagesForBlocks - shim 2', async () => {
-  const watcher = new SVMWatcher('Testnet', 'Solana', 'vaa', 'https://explorer-api.devnet.solana.com');
+  const watcher = new SVMWatcher(
+    'Testnet',
+    'Solana',
+    'vaa',
+    'https://explorer-api.devnet.solana.com'
+  );
   const { vaasByBlock: messages } = await watcher.getMessagesForBlocks(357272507, 357272508);
   expect(Object.keys(messages).length).toBe(1);
   expect(Object.values(messages).length).toBe(1);

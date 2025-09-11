@@ -193,7 +193,8 @@ export class SVMWatcher extends Watcher {
         }
         if (!res || !res.blockTime) {
           throw new Error(
-            `${this.chain}: failed to fetch tx for signature ${res?.transaction.signatures[0] || 'unknown'
+            `${this.chain}: failed to fetch tx for signature ${
+              res?.transaction.signatures[0] || 'unknown'
             }`
           );
         }
